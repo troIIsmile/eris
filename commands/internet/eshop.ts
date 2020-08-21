@@ -1,5 +1,6 @@
 import { Message } from 'eris';
 import getGames from 'nintendo-switch-eshop';
+import { Bot } from "../../utils/types";
 interface Game {
   msrp: number;
   img: string;
@@ -24,13 +25,11 @@ const error = {
   }
 };
 
-export async function run (message: Message, args: string[]) {
-  message.channel.startTyping();
+export async function run (this: Bot, message: Message, args: string[]) {
   try {
     const {
       msrp: price,
       img: thumbnail,
-      lastModified: timestamp,
       title,
       characters,
       categories,
@@ -46,12 +45,13 @@ export async function run (message: Message, args: string[]) {
       )
     );
     if (title) {
-      await message.channel.send({
+      await this.createMessage(message.channel.id, {
         embed: {
-          image: 'https://nintendo.com' + thumbnail,
+          image: {
+            url: 'https://nintendo.com' + thumbnail
+          },
           title,
           description: description.replace(/\*/g, '\\*'),
-          timestamp,
           url: 'https://nintendo.com' + url,
           author: {
             name: developers[0] || '???'
@@ -91,8 +91,6 @@ export async function run (message: Message, args: string[]) {
     }
   } catch (e) {
     return error;
-  } finally {
-    message.channel.stopTyping();
   }
 }
 

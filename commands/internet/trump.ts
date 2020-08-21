@@ -1,12 +1,13 @@
+import { AdvancedMessageContent } from "eris";
 import fetch from 'node-fetch'
 export const help = 'orange man badyyyyyyyyy! give me upvote!!!!'
-export const run = async () => {
+export const run = async (): Promise<AdvancedMessageContent> => {
   const data = await fetch('https://api.tronalddump.io/random/quote').then(res => res.json())
   return {
     embed: {
       author: {
         name: 'Donald J. Trump',
-        iconURL: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg',
+        icon_url: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg',
         url: 'https://twitter.com/realDonaldTrump'
       },
       description: data.value,

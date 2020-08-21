@@ -31,18 +31,16 @@ export async function run (message: Message, args: string[]) {
       }
     };
   }
-  message.channel.startTyping();
   const about = await fetch(
     `https://www.reddit.com/r/${encodeURI(args.join('_'))}/about.json`
   ).then(res => res.json());
   if (about.data.description) {
     const {
-      data: { community_icon: iconURL, display_name_prefixed: text }
+      data: { community_icon: icon_url, display_name_prefixed: text }
     } = about;
     const {
       data: { title, author, created, url, permalink, ups, over_18 }
     } = await getPost(encodeURI(args.join('_'))); // random post
-    message.channel.stopTyping();
     if (('nsfw' in message.channel && message.channel.nsfw) || !over_18) {
       return {
         embed: {
@@ -55,7 +53,7 @@ export async function run (message: Message, args: string[]) {
           title,
           footer: {
             text,
-            iconURL
+            icon_url
           },
           image: {
             url
@@ -78,7 +76,6 @@ export async function run (message: Message, args: string[]) {
       };
     }
   }
-  message.channel.stopTyping();
   return {
     embed: {
       title: 'Error!',

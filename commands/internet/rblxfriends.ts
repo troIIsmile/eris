@@ -1,4 +1,4 @@
-import { Message, MessageOptions } from 'discord.js'
+import { Message, AdvancedMessageContent as MessageOptions } from 'eris'
 import fetch from 'node-fetch'
 interface Player {
   Id: number
@@ -14,7 +14,7 @@ export async function run (message: Message, args: string[]): Promise<MessageOpt
           name: 'Error!'
         },
         title: 'Please provide a username!',
-        color: 'RED'
+        color: 0xFF0000
       }
     }
   }
@@ -29,7 +29,7 @@ export async function run (message: Message, args: string[]): Promise<MessageOpt
           name: 'Error!'
         },
         title: errorMessage,
-        color: 'RED'
+        color: 0xFF0000
       }
     }
   }
@@ -40,7 +40,7 @@ export async function run (message: Message, args: string[]): Promise<MessageOpt
     embed: {
       author: {
         name: args.join(' ') + IsOnline ? ' (🟢 Online)' : ' (🔴 Offline)',
-        iconURL: `https://roblox.com/Thumbs/Avatar.ashx?x=420&y=420&username=${encodeURIComponent(
+        icon_url: `https://roblox.com/Thumbs/Avatar.ashx?x=420&y=420&username=${encodeURIComponent(
           args.join(' ')
         )}`,
         url: `https://www.roblox.com/users/${id}/`

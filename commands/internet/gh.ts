@@ -1,31 +1,31 @@
-import { MessageOptions } from 'discord.js'
-import fetch from 'node-fetch'
+import { AdvancedMessageContent as MessageOptions } from 'eris';
+import fetch from 'node-fetch';
 export async function run (_: any, args: string[]): Promise<MessageOptions> {
-  const { html_url: url, avatar_url: iconURL, created_at, bio: description, public_repos, public_gists, followers, following } = await fetch('https://api.github.com/users/' + encodeURI(args.join('_')))
-    .then(res => res.json())
+  const { html_url: url, avatar_url: icon_url, created_at, bio: description, public_repos, public_gists, followers, following } = await fetch('https://api.github.com/users/' + encodeURI(args.join('_')))
+    .then(res => res.json());
   if (!url) {
     return {
       embed: {
         title: "That user doesn't exist!",
-        color: 'RED',
+        color: 0xFF0000,
         footer: {
           text: 'GitHub',
-          iconURL: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+          icon_url: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
         }
       }
-    }
+    };
   }
   return {
     embed: {
       author: {
-        url, iconURL,
+        url, icon_url,
         name: args.join('_')
       },
       timestamp: new Date(created_at),
       description,
       footer: {
         text: 'GitHub',
-        iconURL: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+        icon_url: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
       },
       fields: [{
         inline: true,
@@ -45,7 +45,7 @@ export async function run (_: any, args: string[]): Promise<MessageOptions> {
         value: following
       }]
     }
-  }
+  };
 }
-export const help = 'Get info about a GitHub user.'
-export const aliases = ['github']
+export const help = 'Get info about a GitHub user.';
+export const aliases = ['github'];

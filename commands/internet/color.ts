@@ -1,4 +1,4 @@
-import { Message, MessageOptions } from 'discord.js'
+import { Message, AdvancedMessageContent as MessageOptions } from 'eris'
 import fetch from 'node-fetch'
 export async function run (message: Message, args: string[]): Promise<MessageOptions> {
   const clr = args.join('')
@@ -8,14 +8,14 @@ export async function run (message: Message, args: string[]): Promise<MessageOpt
     return {
       embed: {
         title: name || 'Name not found!',
-        color: clr,
+        color: Number.parseInt(clr, 16),
         url: 'https://colornames.org/color/' + clr
       }
     }
   } else {
     return {
       embed: {
-        color: 'RED',
+        color: 0xFF0000,
         title: 'That isn\'t a hex color!'
       }
     }

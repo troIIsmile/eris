@@ -1,13 +1,13 @@
-import fetch from 'node-fetch'
-import { MessageOptions } from 'discord.js'
+import fetch from 'node-fetch';
+import { AdvancedMessageContent as MessageOptions } from 'eris';
 
 interface Joke {
-  setup: string
-  punchline: string
-  id: number
+  setup: string;
+  punchline: string;
+  id: number;
 }
 export async function run (): Promise<MessageOptions> {
-  const [{ setup, punchline }]: Joke[] = await fetch('https://official-joke-api.appspot.com/jokes/programming/random').then(res => res.json()) 
+  const [{ setup, punchline }]: Joke[] = await fetch('https://official-joke-api.appspot.com/jokes/programming/random').then(res => res.json());
   return {
     embed: {
       title: setup,
@@ -17,7 +17,7 @@ export async function run (): Promise<MessageOptions> {
         url: 'https://github.com/15Dkatz/official_joke_api'
       }
     }
-  }
+  };
 }
-export const help = 'is not funny'
-export const aliases = []
+export const help = 'is not funny';
+export const aliases = [];

@@ -1,13 +1,13 @@
-import { Message } from 'eris';
+import { Embed, Message } from 'eris';
 
 import fetch from 'node-fetch';
-const template = {
+const template: Embed = {
   color: 0x6e6e6e,
   type: 'image',
   author: {
     name: 'xkcd',
     url: 'https://xkcd.com',
-    iconURL:
+    icon_url:
       'https://pbs.twimg.com/profile_images/413359024617185280/pS8lVAWA_400x400.png'
   }
 };
