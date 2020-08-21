@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+    "**/*.js": {
+      "when": "$(basename).ts"
+    }
+  },
+  "liveServer.settings.showOnStatusbar": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.format.semicolons": "insert",
+  "typescript.preferences.quoteStyle": "double",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "deno.enable": false // this is not nxt-deno
+}
